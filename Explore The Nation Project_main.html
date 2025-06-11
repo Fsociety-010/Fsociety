@@ -1,0 +1,2848 @@
+<!-- for HTML document start -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore The Nation</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+
+/* CSS Variables for easy customization */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #6b7280;
+  --color-primary: #003366;
+  --color-primary-hover: #3399ff;
+  --color-nav-bg: rgba(255, 255, 255, 0.95);
+  --color-nav-border: #ddd;
+  --card-bg: #fefefe;
+  --card-shadow: rgba(0, 0, 0, 0.05);
+  --border-color: #e0e0e0;
+}
+
+/* Basic body styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+    /* ⬇️ Place this inside your existing <style> section or before </head> */
+      .video-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+
+/* Header styles */
+header {
+  background: var(--color-primary);
+  color: white;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 3rem;
+  user-select: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* for navigation menu */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-nav-bg);
+  border-bottom: 1px solid var(--color-nav-border);
+  display: flex;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  gap: 1rem;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  user-select: none;
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+}
+
+/* for navigation links */
+nav a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.90rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* Smooth hover animation and color change for navigation buttons */
+nav a:hover,
+nav a:focus {
+  background-color: var(--color-primary);
+  color: white;
+  transform: scale(1.05);
+  outline: none;
+}
+
+/* Main content styles */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 5rem;
+}
+
+section {
+  display: none;
+}
+
+section.active {
+  display: block;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+section h2 {
+  font-weight: 700;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+}
+
+/* Details/summary styles */
+details {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 3px 8px var(--card-shadow);
+  padding: 1.5rem 2rem;
+  margin-bottom: 2.5rem;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+details:hover,
+details:focus-visible {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+  outline: none;
+}
+
+details summary {
+  font-weight: 600;
+  font-size: 1.4rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  padding-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Styles and Animation in Country Details */
+details[open] summary::before {
+  content: "▼ ";
+  color: var(--color-primary);
+}
+
+details summary::before {
+  content: "▶ ";
+  color: var(--color-primary);
+}
+
+/* Aspect list styles */
+.aspect-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin-top: 1rem;
+}
+
+/* Aspect card styles */
+.aspect-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-radius: 0.6rem;
+  background: #fbfcfd;
+  box-shadow: 0 1px 3px var(--card-shadow);
+  border: 1px solid #dedede;
+  transition: background-color 0.3s ease;
+}
+
+.aspect-card:hover,
+.aspect-card:focus-within {
+  background-color: #f0f5fb;
+  outline: none;
+}
+
+/* Aspect text styles */
+.aspect-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: var(--color-text);
+  user-select: text;
+}
+
+.aspect-name {
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: 1.1rem;
+}
+
+.aspect-detail {
+  font-size: 1rem;
+}
+
+/* Flag styles */
+.flag-inline {
+  width: 40px;
+  height: 30px;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+  object-fit: cover;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  background-color: white;
+  user-select: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.flag-inline:hover,
+.flag-inline:focus {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  outline: none;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  border: 1px solid var(--border-color);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+th {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* Footer styles */
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #999;
+  padding: 2rem 1rem;
+  user-select: none;
+}
+
+/* Mobile navigation styles */
+@media (max-width: 900px) {
+  nav {
+    gap: 0.6rem;
+    padding: 0.7rem 1rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+    padding: 0.25rem 0.7rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    justify-content: flex-start;
+  }
+
+  nav a {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.6rem;
+  }
+}
+
+/* Enhance horizontal nav scrolling on mobile */
+@media (max-width: 900px) {
+  nav {
+    gap: 0.6rem;
+    padding: 0.7rem 1rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    scroll-snap-type: x mandatory;
+    position: relative; /* Required for scroll indicators */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary-hover) transparent;
+  }
+
+  nav::-webkit-scrollbar {
+    height: 6px;
+  }
+  nav::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary-hover);
+    border-radius: 4px;
+  }
+  nav::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+    padding: 0.25rem 0.7rem;
+    white-space: nowrap;
+    scroll-snap-align: start;
+  }
+
+  nav::before,
+  nav::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2rem;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  nav::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  }
+
+  nav::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  }
+}
+</style>
+</head>
+</body>
+<header>
+    Our Project 🌍
+  </header>
+
+  <nav>
+    <a onclick="switchSection('home')" tabindex="0">Home</a>
+    <a onclick="switchSection('about')" tabindex="0">About</a>
+    <a onclick="switchSection('internship')" tabindex="0">Internship Concept</a>
+    <a onclick="switchSection('country-summary')" tabindex="0">Country Summary</a>
+    <a onclick="switchSection('dialing-code')" tabindex="0">Dialing Code</a>
+    <a onclick="switchSection('country-details')" tabindex="0">Country Details</a>
+    <a onclick="switchSection('population-chart')" tabindex="0">Example</a>
+    <a onclick="switchSection('code')" tabindex="0">Code</a>
+    <a onclick="switchSection('teamwork')" tabindex="0">Teamwork</a>
+</nav>
+
+<main>
+
+
+<section id="about" style="display: none; animation: fadeIn 0.4s ease-in-out;" tabindex="0">
+<h2 style="text-align: center; color: #003366; font-size: 2rem; margin-bottom: 2rem;">About The Project</h2>
+<div style="max-width: 1050px; margin: 0 auto; padding: 3rem 1.5rem; font-family: 'Poppins', sans-serif;">
+<div style="padding-left: 0; display: flex; flex-direction: column; gap: 2rem;">
+<div style="background: linear-gradient(to right, #fdfbfb, #ebedee); padding: 1.5rem 2rem; border-radius: 1rem; box-shadow: 0 3px 12px rgba(0,0,0,0.05); border-left: 6px solid #005baa;">
+<h3 style="color: #004080; margin-bottom: 0.75rem; font-size: 1.5rem;">Purpose</h3>
+<p style="margin-bottom: 0.5rem;"><strong>Explore The Nation</strong> is a simple and fun project that helps people learn about different countries around the world in a visual and easy-to-understand way.</p>
+<p>The main goal is to explore and learn about these 10 amazing countries:</p>
+<ul style="columns: 2; padding-left: 1.5rem; margin-top: 0.5rem;">
+<li>India</li><li>Russia</li><li>Singapore</li><li>Japan</li><li>China</li>
+<li>USA</li><li>UK</li><li>France</li><li>Germany</li><li>Switzerland</li>
+</ul>
+<p style="margin-top: 0.75rem;">We use a colorful world map and organized sections to make learning more interesting and interactive.</p>
+</div>
+<div style="background: linear-gradient(to right, #f3fff9, #ffffff); padding: 1.5rem 2rem; border-radius: 1rem; box-shadow: 0 3px 12px rgba(0,0,0,0.05); border-left: 6px solid #00695c;">
+<h3 style="color: #004080; margin-bottom: 0.75rem; font-size: 1.5rem;">Objectives</h3>
+<ul style="padding-left: 1.5rem; line-height: 1.8;">
+<li>Show country details in a clean and simple way</li>
+<li>Help users learn about culture, food, technology, and more</li>
+<li>Make switching between countries easy</li>
+<li>Use colors and design to keep things fun and clear</li>
+<li>Let users compare different countries side-by-side</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+
+
+<section id="home" style="display: none; animation: fadeIn 0.4s ease-in-out;" tabindex="0">
+  <h2 style="text-align: center; color: #003366; font-size: 2rem; margin-bottom: 2rem;">Explore The Nation</h2>
+
+  <!-- 🔽 EMBEDDED VIDEO (MediaFire link inside iframe) -->
+  <div class="video-container">
+    <iframe src="https://www.mediafire.com/file/9wh35ntuax8eo7k/Course+Conclusion_6.mp4/file" allowfullscreen></iframe>
+  </div>
+
+  <!-- 🔽 The rest of your home content stays the same -->
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 3rem;">
+    <div style="box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 0.75rem; overflow: hidden; max-width: 900px; width: 100%;">
+      <img alt="World Map with Colored Regions" src="https://i.ibb.co/4n6Km87n/IMG-20250608-WA0007.jpg" style="width: 100%; display: block; border-radius: 0.75rem;" />
+    </div>
+
+    <div style="background: white; border: 1px solid #ccc; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.07); max-width: 850px; width: 100%;">
+      <h3 style="text-align: center; margin-bottom: 2rem; color: #003366; font-size: 1.5rem;">Countries</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.2rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="width:18px;height:18px;border-radius:50%;background:red;"></span><span>India</span></div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="width:18px;height:18px;border-radius:50%;background:lightgreen;"></span><span>Russia</span></div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="width:18px;height:18px;border-radius:50%;background:pink;"></span><span>Singapore</span></div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="width:18px;height:18px;border-radius:50%;background:purple;"></span><span>Japan</span></div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="width:18px;height:18px;border-radius:50%;background:green;"></span><span>China</span></div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="width:18px;height:18px;border-radius:50%;background:orange;"></span><span>USA</span></div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="width:18px;height:18px;border-radius:50%;background:goldenrod;"></span><span>UK</span></div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="width:18px;height:18px;border-radius:50%;background:blue;"></span><span>France</span></div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="width:18px;height:18px;border-radius:50%;background:black;"></span><span>Germany</span></div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="width:18px;height:18px;border-radius:50%;background:lightskyblue;"></span><span>Switzerland</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="internship" style="display: none; animation: fadeIn 0.4s ease-in-out;" tabindex="0">
+<h2 style="text-align: center; color: #003366; font-size: 2rem; margin-bottom: 2rem;">Internship Concept</h2>
+<div style="max-width: 1100px; margin: 0 auto; padding: 2rem; background: #ffffff; border-radius: 1rem; box-shadow: 0 6px 18px rgba(0,0,0,0.08); font-family: 'Poppins', sans-serif;">
+<div style="display: flex; flex-direction: column; gap: 2rem;">
+<div style="background: #f3f7fb; padding: 2rem; border-radius: 1rem; border-left: 6px solid #003366;">
+<h3 style="color: #003366; margin-bottom: 0.75rem; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 0.5px;">Concept Summary</h3>
+<p style="margin: 0 0 0.5rem 0;">This website was created as part of an internship project. It helps users explore and learn about different countries using simple design and visuals.</p>
+<p style="margin: 0;">The countries included are:</p>
+<ul style="padding-left: 1.5rem; margin-top: 0.5rem;">
+<li>India</li>
+<li>Russia</li>
+<li>Singapore</li>
+<li>Japan</li>
+<li>China</li>
+<li>USA</li>
+<li>UK</li>
+<li>France</li>
+<li>Germany</li>
+<li>Switzerland</li>
+</ul>
+</div>
+<div style="background: #f9f9f9; padding: 2rem; border-radius: 1rem; border-left: 6px solid #005baa;">
+<h3 style="color: #003366; margin-bottom: 0.75rem; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 0.5px;">Key Features &amp; Tools</h3>
+<ul style="padding-left: 1.5rem; line-height: 1.75;">
+<li><strong>HTML:</strong> Used for creating the layout and page sections like nav bar, headings, and country blocks.</li>
+<li><strong>CSS (Inline Styles):</strong> Used for styling elements (colors, spacing, layout) directly inside HTML tags for simplicity.</li>
+<li><strong>JavaScript:</strong> A short script is used to make the menu buttons work by switching between sections using the <code>switchSection()</code> function.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+
+
+<section id="code" class="section" style="display: none; animation: fadeIn 0.4s ease-in-out;" tabindex="0">
+  <h2 style="text-align: center; color: #003366; font-size: 2rem; margin-bottom: 2rem;">Code</h2>
+  <div class="content">
+
+      <!-- Step by Step Flow Table -->
+      <table class="step-table">
+          <thead>
+              <tr>
+                  <th>Step</th>
+                  <th>Explanation</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td><b>1. HTML Layouts</b></td>
+
+                  <td>
+                    <pre><strong>&lt;section id="country-details" style="display: none;"&gt;...&lt;/section&gt;</strong></pre>
+                      What this does: Defines one "page" of your website.<br>
+                      id="country-details" lets you show this section when someone clicks "Country Details" in the navbar.<br>
+                      style="display: none;" means it's hidden by default (we only show one section at a time).<br>
+                      You’ll repeat this for every section like home, about, internship, etc.
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>2. Navigation Buttons</b></td>
+                  <td>
+                      <pre><b>&lt;a onclick="switchSection('country-details')"&gt;Country Details&lt;/a&gt;</b></pre>
+                      What this does: It's a clickable link (styled like a button).<br>
+                      When clicked, it runs the <code>switchSection()</code> function and shows the section with that ID.<br>
+                      So if you click this, it will show:<br>
+                      <pre><b>&lt;section id="country-details"&gt;...&lt;/section&gt;</b></pre>
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>3. Country Data in Country Details Section</b></td>
+                  <td>
+                      <pre><b>&lt;details&gt;
+&lt;summary&gt;India&lt;/summary&gt;
+&lt;div class="aspect-list"&gt;
+  &lt;div class="aspect-card"&gt;
+    &lt;div class="aspect-text"&gt;
+      &lt;div class="aspect-name"&gt;Population&lt;/div&gt;
+      &lt;div class="aspect-detail"&gt;1.46 Billion&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;</b></pre>
+                      What this does: <code>details</code> makes a collapsible section you can click to expand/collapse.<br>
+                      <code>summary</code> is the title shown first (like “India”).<br>
+                      Inside, it has:<br>
+                      <code>.aspect-card</code>: a visual card (with white background, padding, and shadow)<br>
+                      <code>.aspect-name</code>: label (like “Population”)<br>
+                      <code>.aspect-detail</code>: value (like “1.4 Billion”)<br>
+                      You can copy this and change "India" to "Japan", "China", etc., and update the data inside.
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>4. Dialing Code Section</b></td>
+                  <td>
+                      <pre><b>&lt;details&gt;
+&lt;summary&gt;Which code is +91?&lt;/summary&gt;
+&lt;div class="aspect-card"&gt;
+  &lt;div class="aspect-text"&gt;
+    &lt;div class="aspect-name"&gt;Country&lt;/div&gt;
+    &lt;div class="aspect-detail"&gt;India&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;</b></pre>
+                      What this does: Asks the user “Which code is +91?”<br>
+                      When clicked, it reveals the answer: “India”<br>
+                      Again, copy this format and change the code (+44, +81, etc.) and the country name.
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>5. Bar Chart in Example Section</b></td>
+                  <td>
+                      <pre><b>&lt;canvas id="populationBarChart"&gt;&lt;/canvas&gt;</b></pre>
+                      Then later in a <code><b>&lt;script&gt;</b></code>:<br>
+                      <pre><b>new Chart(document.getElementById("populationBarChart"), {
+type: 'bar',
+data: {
+  labels: ["India", "China", "USA"],
+  datasets: [{
+    label: "Population (M)",
+    data: [1460, 1400, 331],
+    backgroundColor: ["#003366", "#1976d2", "#4caf50"]
+  }]
+}
+});</b></pre>
+                      What this does: Creates a bar chart showing population of three countries.<br>
+                      The canvas is the placeholder, and the new Chart(...) fills it with bars.<br>
+                      Each bar has a color and label.<br>
+                      Add more countries by editing the labels and data arrays.
+                  </td>
+              </tr>
+              <tr>
+                <td><b>6. Js for Mobile Responsive Screens</b></td>
+                <td>
+                  You’ve added advanced responsive styling to enhance horizontal nav scrolling:<br>
+                  <pre><code><b>/* Enhance horizontal nav scrolling on mobile */
+              @media (max-width: 900px) {
+                nav {
+                  gap: 0.6rem;
+                  padding: 0.7rem 1rem;
+                  justify-content: flex-start;
+                  overflow-x: auto;
+                  -webkit-overflow-scrolling: touch;
+                  touch-action: pan-x;
+                  scroll-snap-type: x mandatory;
+                  position: relative;
+                  scrollbar-width: thin;
+                  scrollbar-color: var(--color-primary-hover) transparent;
+                }
+              
+                nav::-webkit-scrollbar {
+                  height: 6px;
+                }
+                nav::-webkit-scrollbar-thumb {
+                  background-color: var(--color-primary-hover);
+                  border-radius: 4px;
+                }
+                nav::-webkit-scrollbar-track {
+                  background: transparent;
+                }
+              
+                nav a {
+                  font-size: 0.9rem;
+                  padding: 0.25rem 0.7rem;
+                  white-space: nowrap;
+                  scroll-snap-align: start;
+                }
+              
+                nav::before,
+                nav::after {
+                  content: "";
+                  position: absolute;
+                  top: 0;
+                  bottom: 0;
+                  width: 2rem;
+                  pointer-events: none;
+                  z-index: 10;
+                }
+              
+                nav::before {
+                  left: 0;
+                  background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+                }
+              
+                nav::after {
+                  right: 0;
+                  background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+                }
+              }</b></code></pre>
+                  What this does:
+                  <ul>
+                    <li>Makes the nav scroll smoothly on small screens</li>
+                    <li>Adds scroll snap for better UX</li>
+                    <li>Visually shows scrollability with fading edges</li>
+                    <li>Improves accessibility using smaller font and spacing</li>
+                  </ul>
+                </td>
+              </tr>              
+          </tbody>
+      </table>
+
+      <!-- Source Code Link Table -->
+      <table class="source-table">
+          <thead>
+              <tr>
+                  <th>Source Code</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td style="text-align: center;">
+                      <a href="https://www.mediafire.com/file/65ii2szrnvywtzz/god.html/file" target="_blank" rel="noopener noreferrer">
+                          Just Click on the Link for Download the Full Source Code
+                      </a>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+
+  </div>
+</section>
+
+<section id="teamwork" style="display: none; animation: fadeIn 0.4s ease-in-out;" tabindex="0">
+<h2 style="text-align: center; color: #003366; font-size: 2rem; margin-bottom: 2rem;">Teamwork</h2>
+<div style="max-width: 1050px; margin: 0 auto; padding: 3rem 1.5rem; font-family: 'Poppins', sans-serif;">
+<div style="display: flex; flex-direction: column; gap: 2rem;">
+<div style="background: linear-gradient(to right, #fffdf5, #f0f8ff); padding: 1.5rem 2rem; border-radius: 1rem; box-shadow: 0 3px 12px rgba(0,0,0,0.05); border-left: 6px solid #115ce7;">
+<h3 style="color: #0e63b8; margin-bottom: 1rem; font-size: 1.5rem;">Team Members</h3>
+<div style="line-height: 1.8;">
+<p><strong>Name:</strong> Kurmapu Jagadeesh<br/>
+<strong>Email:</strong> kurmapujagadeesh334@gmail.com<br/>
+<strong>Phone:</strong> 8688252477<br/>
+<strong>Instagram:</strong> @a_lone_boy_jagadeesh_01</p>
+<p><strong>Name:</strong> Lankalapalli Asharani<br/>
+<strong>Email:</strong> l.asharani3010@gmail.com<br/>
+<strong>Phone:</strong> 9391721609</p>
+<p><strong>Name:</strong> Laveti Hari Prasad<br/>
+<strong>Email:</strong> hari0000000@gmail.com</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="country-summary" style="display: none; animation: fadeIn 0.4s ease-in-out;" tabindex="0">
+<h2 style="text-align: center; color: #003366; font-size: 2rem; margin-bottom: 2rem;">Country Summary</h2>
+<div style="max-width: 1100px; margin: 0 auto; padding: 2.5rem; background: #ffffff; border-radius: 1rem; box-shadow: 0 6px 18px rgba(0,0,0,0.08); font-family: 'Poppins', sans-serif;">
+<!-- India -->
+<div style="background: #f3f7fb; padding: 2rem; border-radius: 1rem; border-left: 6px solid #e71111; margin-bottom: 2rem;">
+<h3 style="color: #003366; margin-bottom: 0.75rem; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 0.5px;">India</h3>
+<p><strong>Summary:</strong> India is a big country with many languages, mainly Hindi and English. People enjoy biryani and mangoes. Cricket and kabaddi are favorite sports. It has top schools like IITs and IIMs, strong IT and space programs, and health traditions like Ayurveda and Yoga. Farmers grow rice and wheat in many areas.</p>
+<h4 style="color: #003366; margin-top: 1rem;">Why This Country So Special?</h4>
+<p>India is special because it brings together old traditions and modern ideas. It stands out for its culture, education, and technology.</p>
+</div>
+<!-- Russia Summary -->
+<div style="background: #f3f7fb; padding: 2rem; border-radius: 1rem; border-left: 6px solid #18c443; margin-bottom: 2rem;">
+<h3 style="color: #003366; margin-bottom: 0.75rem; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 0.5px;">Russia</h3>
+<p><strong>Summary:</strong> Russia is the largest country in the world with Russian as the main language. It has a strong culture in chess, ballet, and literature. People enjoy dishes like Borscht. It’s also known for its achievements in space and nuclear science.</p>
+<h4 style="color: #003366; margin-top: 1rem;">Why This Country So Special?</h4>
+<p>Russia is special for its massive size, deep cultural history, and big contributions to science and space.</p>
+</div>
+<!-- Japan Summary -->
+<div style="background: #f3f7fb; padding: 2rem; border-radius: 1rem; border-left: 6px solid #5917af; margin-bottom: 2rem;">
+<h3 style="color: #003366; margin-bottom: 0.75rem; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 0.5px;">Japan</h3>
+<p><strong>Summary:</strong> Japan is a country with high-tech cities and deep traditions. People speak Japanese, and popular things include sushi, sumo wrestling, and bullet trains. Japan also leads in robotics and clean energy technology.</p>
+<h4 style="color: #003366; margin-top: 1rem;">Why This Country So Special?</h4>
+<p>Japan is special for its peaceful culture, smart technology, and respect for both history and the future.</p>
+</div>
+<!-- China Summary -->
+<div style="background: #f3f7fb; padding: 2rem; border-radius: 1rem; border-left: 6px solid #032c0a; margin-bottom: 2rem;">
+<h3 style="color: #003366; margin-bottom: 0.75rem; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 0.5px;">China</h3>
+<p><strong>Summary:</strong> China is a huge country where most people speak Mandarin. It is known for the Great Wall, food like dumplings, traditional medicine, and leadership in areas like 5G and electronics.</p>
+<h4 style="color: #003366; margin-top: 1rem;">Why This Country So Special?</h4>
+<p>China is special for its long history, fast development, and being a world leader in trade and technology.</p>
+</div>
+<!-- USA Summary -->
+<div style="background: #f3f7fb; padding: 2rem; border-radius: 1rem; border-left: 6px solid #e7e41b; margin-bottom: 2rem;">
+<h3 style="color: #003366; margin-bottom: 0.75rem; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 0.5px;">USA</h3>
+<p><strong>Summary:</strong> The USA is a large and diverse country where English is the main language. It’s famous for Hollywood, fast food, technology companies, sports like basketball, and space missions by NASA.</p>
+<h4 style="color: #003366; margin-top: 1rem;">Why This Country So Special?</h4>
+<p>The USA is special because of its influence in movies, science, technology, and education around the world.</p>
+</div>
+<!-- UK Summary -->
+<div style="background: #f3f7fb; padding: 2rem; border-radius: 1rem; border-left: 6px solid #eeb20c; margin-bottom: 2rem;">
+<h3 style="color: #003366; margin-bottom: 0.75rem; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 0.5px;">UK</h3>
+<p><strong>Summary:</strong> The UK is a group of countries where people speak English. It is known for the Royal Family, tea, football, and top universities like Oxford. London is the capital and a major global city.</p>
+<h4 style="color: #003366; margin-top: 1rem;">Why This Country So Special?</h4>
+<p>The UK is special for its long history, global language, and important contributions to law, science, and music.</p>
+</div>
+<!-- France Summary -->
+<div style="background: #f3f7fb; padding: 2rem; border-radius: 1rem; border-left: 6px solid #162ae4; margin-bottom: 2rem;">
+<h3 style="color: #003366; margin-bottom: 0.75rem; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 0.5px;">France</h3>
+<p><strong>Summary:</strong> France is famous for the Eiffel Tower, beautiful fashion, and tasty food like baguettes and cheese. People speak French, and the country also leads in health care and culture.</p>
+<h4 style="color: #003366; margin-top: 1rem;">Why This Country So Special?</h4>
+<p>France is special for its beauty, creative art, and big role in global culture and food.</p>
+</div>
+<!-- Germany Summary -->
+<div style="background: #f3f7fb; padding: 2rem; border-radius: 1rem; border-left: 6px solid #111111; margin-bottom: 2rem;">
+<h3 style="color: #003366; margin-bottom: 0.75rem; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 0.5px;">Germany</h3>
+<p><strong>Summary:</strong> Germany is a country in Europe where people speak German. It is known for cars like BMW, tasty sausages, strong schools, and engineering. It also has beautiful castles and forests.</p>
+<h4 style="color: #003366; margin-top: 1rem;">Why This Country So Special?</h4>
+<p>Germany is special for its smart engineers, strong economy, and important ideas in science and design.</p>
+</div>
+<!-- Switzerland Summary -->
+<div style="background: #f3f7fb; padding: 2rem; border-radius: 1rem; border-left: 6px solid #196ce9; margin-bottom: 2rem;">
+<h3 style="color: #003366; margin-bottom: 0.75rem; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 0.5px;">Switzerland</h3>
+<p><strong>Summary:</strong> Switzerland is a small and peaceful country with mountains and lakes. People speak German, French, and Italian. It is famous for chocolates, watches, and clean public transport.</p>
+<h4 style="color: #003366; margin-top: 1rem;">Why This Country So Special?</h4>
+<p>Switzerland is special for its natural beauty, peaceful living, and top quality in everything it makes.</p>
+</div>
+</div>
+</section>
+<section id="country-details" style="display: none; animation: fadeIn 0.4s ease-in-out;" tabindex="0">
+<h2 style="text-align: center; color: #003366; font-size: 2rem; margin-bottom: 4rem;">Country Profiles</h2>
+<!-- INDIA -->
+<details>
+<summary style="font-size: 1.5rem;">
+          India
+          <img alt="Flag of India" class="flag-inline" src="https://flagcdn.com/w40/in.png"/>
+</summary>
+<div class="aspect-list">
+<!-- Official Language -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Official Language</div>
+<div class="aspect-detail">Hindi,English</div>
+</div>
+<table>
+<thead>
+<tr><th>Language</th><th>Cities</th></tr>
+</thead>
+<tbody>
+<tr><td>Hindi</td><td>Delhi, Kolkata</td></tr>
+<tr><td>English</td><td>Bangalore, Hyderabad</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Population -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Population</div>
+<div class="aspect-detail">1.46 Billion</div>
+</div>
+<table>
+<thead>
+<tr><th>City</th><th>Population</th></tr>
+</thead>
+<tbody>
+<tr><td>Delhi</td><td>Over 20 million</td></tr>
+<tr><td>Mumbai</td><td>Over 18 million</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Currency -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Currency</div>
+<div class="aspect-detail">Indian Rupee (₹)</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Denominations</th></tr>
+</thead>
+<tbody>
+<tr><td>Indian Rupee</td><td>₹2, ₹5, ₹10, ₹20, ₹50, ₹100, ₹200, ₹500, ₹2000</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Food, Fruits -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Food, Fruits</div>
+<div class="aspect-detail">Biryani,  Mango</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Examples</th></tr>
+</thead>
+<tbody>
+<tr><td>Dishes</td><td>Biryani</td></tr>
+<tr><td>Fruits</td><td>Mango</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Games -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Games</div>
+<div class="aspect-detail">Cricket, Kabaddi</div>
+</div>
+<table>
+<thead>
+<tr><th>Sport</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Cricket</td><td>Popular across the country</td></tr>
+<tr><td>Kabaddi</td><td>Favorite traditional sport in rural areas</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Birds / Animals -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Birds / Animals</div>
+<div class="aspect-detail">Peacock, Bengal Tiger</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>National Bird</td><td>Peacock</td></tr>
+<tr><td>National Animal</td><td>Bengal Tiger</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Famous Technology -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Famous Technology</div>
+<div class="aspect-detail">IT, Space</div>
+</div>
+<table>
+<thead>
+<tr><th>Sector</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>IT</td><td>Major hub in Bangalore</td></tr>
+<tr><td>Space</td><td>ISRO's significant satellite launches</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Medicine / Health -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Medicine / Health</div>
+<div class="aspect-detail">Ayurveda, Yoga</div>
+</div>
+<table>
+<thead>
+<tr><th>Practice</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Ayurveda</td><td>Traditional Indian medicine system</td></tr>
+<tr><td>Yoga</td><td>Well-known physical and mental wellness practice</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Education -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Education</div>
+<div class="aspect-detail">IITs, IIMs</div>
+</div>
+<table>
+<thead>
+<tr><th>Institution</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>IITs</td><td>India’s premier engineering institutes</td></tr>
+<tr><td>IIMs</td><td>Top business management schools in India</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Dressing / Dance -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Dressing / Dance</div>
+<div class="aspect-detail">Saree, Bharatanatyam</div>
+</div>
+<table>
+<thead>
+<tr><th>Category</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Traditional Attire</td><td>Saree, commonly worn by women across India</td></tr>
+<tr><td>Classical Dance</td><td>Bharatanatyam - classical dance  from Tamil Nadu</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Agriculture -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Agriculture</div>
+<div class="aspect-detail">Rice, Wheat</div>
+</div>
+<table>
+<thead>
+<tr><th>Crop</th><th>Region / Notes</th></tr>
+</thead>
+<tbody>
+<tr><td>Rice</td><td>Primarily grown in eastern and southern states like West Bengal</td></tr>
+<tr><td>Wheat</td><td>Major crop in northern states including Punjab, Haryana</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<!-- USA -->
+<details>
+<summary style="font-size: 1.5rem;">
+        USA
+        <img alt="Flag of USA" class="flag-inline" src="https://flagcdn.com/w320/us.png"/>
+</summary>
+<div class="aspect-list">
+<!-- Official Language -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Official Language</div>
+<div class="aspect-detail">English</div>
+</div>
+<table>
+<thead>
+<tr><th>Language</th><th>Regions/Cities</th></tr>
+</thead>
+<tbody>
+<tr><td>English</td><td>Nationwide</td></tr>
+<tr><td>Spanish</td><td>Large communities in California,Florida</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Population -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Population</div>
+<div class="aspect-detail">331 Million</div>
+</div>
+<table>
+<thead>
+<tr><th>City</th><th>Population (million)</th></tr>
+</thead>
+<tbody>
+<tr><td>New York City</td><td>8.3</td></tr>
+<tr><td>Los Angeles</td><td>4.0</td></tr>
+<tr><td>Chicago</td><td>2.7</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Currency -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Currency</div>
+<div class="aspect-detail">US Dollar ($)</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>Federal Reserve Notes</td><td>Bills in denominations of $1 to $100</td></tr>
+<tr><td>Coins</td><td>Pennies, nickels, dimes, quarters, half-dollars, dollar coins</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Food, Fruits -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Food, Fruits</div>
+<div class="aspect-detail">Hamburger, Pie-Apple </div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Examples</th></tr>
+</thead>
+<tbody>
+<tr><td>Dishes</td><td>Hamburger</td></tr>
+<tr><td>Fruits</td><td>Apple,Blueberry</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Games -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Games</div>
+<div class="aspect-detail">American Football, Basketball</div>
+</div>
+<table>
+<thead>
+<tr><th>Sport</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>American Football</td><td>Popular nationwide, especially in the NFL</td></tr>
+<tr><td>Basketball</td><td>Originated in the USA, widely played and followed</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Birds / Animals -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Birds / Animals</div>
+<div class="aspect-detail">Bald Eagle, American Bison</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>National Bird</td><td>Bald Eagle</td></tr>
+<tr><td>National Mammal</td><td>American Bison</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Famous Technology -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Famous Technology</div>
+<div class="aspect-detail"> Space Exploration</div>
+</div>
+<table>
+<thead>
+<tr><th>Sector</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Space Exploration</td><td>NASA's significant contributions to space science</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Medicine / Health -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Medicine / Health</div>
+<div class="aspect-detail">Advanced healthcare, Pharmaceuticals</div>
+</div>
+<table>
+<thead>
+<tr><th>Aspect</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Healthcare</td><td>Advanced medical facilities and research</td></tr>
+<tr><td>Pharmaceuticals</td><td>Leading in drug development and innovation</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Education -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Education</div>
+<div class="aspect-detail">Harvard, MIT</div>
+</div>
+<table>
+<thead>
+<tr><th>Institution</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Harvard University</td><td>One of the oldest and most prestigious universities</td></tr>
+<tr><td>Massachusetts Institute of Technology (MIT)</td><td>Renowned for engineering and technology</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Dressing / Dance -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Dressing / Dance</div>
+<div class="aspect-detail">Jeans, Ballet</div>
+</div>
+<table>
+<thead>
+<tr><th>Category</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Casual Attire</td><td>Jeans, a staple in American fashion</td></tr>
+<tr><td>Dance Form</td><td>Ballet, a popular and classical dance style</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Agriculture -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Agriculture</div>
+<div class="aspect-detail">Corn</div>
+</div>
+<table>
+<thead>
+<tr><th>Crop</th><th>Region / Notes</th></tr>
+</thead>
+<tbody>
+<tr><td>Corn</td><td>Major crop in the Midwest, especially in Iowa and Illinois</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<!-- CHINA -->
+<details>
+<summary style="font-size: 1.5rem;">
+        China
+        <img alt="Flag of China" class="flag-inline" src="https://flagcdn.com/w320/cn.png"/>
+</summary>
+<div class="aspect-list">
+<!-- Official Language -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Official Language</div>
+<div class="aspect-detail">Mandarin</div>
+</div>
+<table>
+<thead>
+<tr><th>Language</th><th>Regions</th></tr>
+</thead>
+<tbody>
+<tr><td>Mandarin</td><td>Nationwide</td></tr>
+<tr><td>Cantonese</td><td>Guangdong, Hong Kong</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Population -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Population</div>
+<div class="aspect-detail">1.4 Billion</div>
+</div>
+<table>
+<thead>
+<tr><th>City</th><th>Population (million)</th></tr>
+</thead>
+<tbody>
+<tr><td>Shanghai</td><td>24</td></tr>
+<tr><td>Beijing</td><td>21</td></tr>
+<tr><td>Chongqing</td><td>15</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Currency -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Currency</div>
+<div class="aspect-detail">Renminbi (¥)</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Denominations</th></tr>
+</thead>
+<tbody>
+<tr><td>Renminbi</td><td>¥1, ¥5, ¥10, ¥20, ¥50, ¥100</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Food, Fruits -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Food, Fruits</div>
+<div class="aspect-detail">Peking Duck, Lychee</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Examples</th></tr>
+</thead>
+<tbody>
+<tr><td>Dishes</td><td>Peking Duck</td></tr>
+<tr><td>Fruits</td><td>Lychee</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Games -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Games</div>
+<div class="aspect-detail">Table Tennis</div>
+</div>
+<table>
+<thead>
+<tr><th>Sport</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Table Tennis</td><td>National sport, highly competitive</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Birds / Animals -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Birds / Animals</div>
+<div class="aspect-detail">Giant Panda, Golden Monkey</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>National Animal</td><td>Giant Panda</td></tr>
+<tr><td>Endangered Species</td><td>Golden Monkey</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Famous Technology -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Famous Technology</div>
+<div class="aspect-detail">Telecommunications</div>
+</div>
+<table>
+<thead>
+<tr><th>Sector</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Telecommunications</td><td>Leading in 5G technology</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Medicine / Health -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Medicine / Health</div>
+<div class="aspect-detail">Traditional Chinese Medicine, Acupuncture</div>
+</div>
+<table>
+<thead>
+<tr><th>Practice</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Traditional Chinese Medicine</td><td>Holistic approach to health</td></tr>
+<tr><td>Acupuncture</td><td>Ancient practice for pain relief</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Education -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Education</div>
+<div class="aspect-detail">Tsinghua University</div>
+</div>
+<table>
+<thead>
+<tr><th>Institution</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Tsinghua University</td><td>Top engineering university</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Dressing / Dance -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Dressing / Dance</div>
+<div class="aspect-detail">Qipao, Chinese Opera</div>
+</div>
+<table>
+<thead>
+<tr><th>Category</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Traditional Attire</td><td>Qipao, worn by women</td></tr>
+<tr><td>Performance Art</td><td>Chinese Opera, rich in history</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Agriculture -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Agriculture</div>
+<div class="aspect-detail"> Tea</div>
+</div>
+<table>
+<thead>
+<tr><th>Crop</th><th>Region / Notes</th></tr>
+</thead>
+<tbody>
+<tr><td>Tea</td><td>Famous for varieties like Longjing and Oolong</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<!-- FRANCE -->
+<details>
+<summary style="font-size: 1.5rem;">
+        France
+        <img alt="Flag of France" class="flag-inline" src="https://flagcdn.com/w320/fr.png"/>
+</summary>
+<div class="aspect-list">
+<!-- Official Language -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Official Language</div>
+<div class="aspect-detail">French</div>
+</div>
+<table>
+<thead>
+<tr><th>Language</th><th>Regions/Cities</th></tr>
+</thead>
+<tbody>
+<tr><td>French</td><td>Nationwide</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Population -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Population</div>
+<div class="aspect-detail">67 Million</div>
+</div>
+<table>
+<thead>
+<tr><th>City</th><th>Population</th></tr>
+</thead>
+<tbody>
+<tr><td>Paris</td><td>Over 2 million</td></tr>
+<tr><td>Marseille</td><td>Over 850,000</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Currency -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Currency</div>
+<div class="aspect-detail">Euro (€)</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Denominations</th></tr>
+</thead>
+<tbody>
+<tr><td>Euro</td><td>€5, €10, €20, €50, €100, €200, €500</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Food, Fruits -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Food, Fruits</div>
+<div class="aspect-detail">Baguette, Croissant, Cheese, Wine</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Examples</th></tr>
+</thead>
+<tbody>
+<tr><td>Breads</td><td>Baguette, Croissant</td></tr>
+<tr><td>Cheese</td><td>Brie, Camembert</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Games -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Games</div>
+<div class="aspect-detail"> Rugby</div>
+</div>
+<table>
+<thead>
+<tr><th>Sport</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Rugby</td><td>Popular, especially in the south</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Birds / Animals -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Birds / Animals</div>
+<div class="aspect-detail">Gallic Rooster, French Bulldog</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>National Bird</td><td>Gallic Rooster</td></tr>
+<tr><td>Popular Breed</td><td>French Bulldog</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Famous Technology -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Famous Technology</div>
+<div class="aspect-detail">Aerospace</div>
+</div>
+<table>
+<thead>
+<tr><th>Sector</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Aerospace</td><td>Airbus, major player in aviation</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Medicine / Health -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Medicine / Health</div>
+<div class="aspect-detail">Universal Healthcare</div>
+</div>
+<table>
+<thead>
+<tr><th>Aspect</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Healthcare</td><td>Universal system with high-quality care</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Education -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Education</div>
+<div class="aspect-detail">Universities</div>
+</div>
+<table>
+<thead>
+<tr><th>Institution</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Université Paris-Saclay</td><td>Leading research university</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Dressing / Dance -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Dressing / Dance</div>
+<div class="aspect-detail">Beret, Ballet</div>
+</div>
+<table>
+<thead>
+<tr><th>Category</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Traditional Attire</td><td>Beret, a symbol of French culture</td></tr>
+<tr><td>Dance Form</td><td>Ballet, famous worldwide</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Agriculture -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Agriculture</div>
+<div class="aspect-detail"> Cheese</div>
+</div>
+<table>
+<thead>
+<tr><th>Crop</th><th>Region / Notes</th></tr>
+</thead>
+<tbody>
+<tr><td>Cheese</td><td>Over 400 varieties produced</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<!-- UNITED KINGDOM -->
+<details>
+<summary style="font-size: 1.5rem;">
+        UK
+        <img alt="Flag of UK" class="flag-inline" src="https://flagcdn.com/w320/gb.png"/>
+</summary>
+<div class="aspect-list">
+<!-- Official Language -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Official Language</div>
+<div class="aspect-detail">English</div>
+</div>
+<table>
+<thead>
+<tr><th>Language</th><th>Regions/Cities</th></tr>
+</thead>
+<tbody>
+<tr><td>English</td><td>Nationwide</td></tr>
+<tr><td>Welsh</td><td>Wales</td></tr>
+<tr><td>Scottish Gaelic</td><td>Scotland</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Population -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Population</div>
+<div class="aspect-detail">67 Million</div>
+</div>
+<table>
+<thead>
+<tr><th>City</th><th>Population</th></tr>
+</thead>
+<tbody>
+<tr><td>London</td><td>Over 9 million</td></tr>
+<tr><td>Birmingham</td><td>Over 1 million</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Currency -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Currency</div>
+<div class="aspect-detail">Pound Sterling (£)</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Denominations</th></tr>
+</thead>
+<tbody>
+<tr><td>Pound Sterling</td><td>£1, £5, £10, £20, £50</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Food, Fruits -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Food, Fruits</div>
+<div class="aspect-detail">Fish ,  Berries</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Examples</th></tr>
+</thead>
+<tbody>
+<tr><td>Dishes</td><td>Fish </td></tr>
+<tr><td>Fruits</td><td>Berries</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Games -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Games</div>
+<div class="aspect-detail"> Rugby</div>
+</div>
+<table>
+<thead>
+<tr><th>Sport</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Rugby</td><td>Popular sport, especially in Wales and England</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Birds / Animals -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Birds / Animals</div>
+<div class="aspect-detail">Red Kite, British Bulldog</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>National Bird</td><td>Red Kite</td></tr>
+<tr><td>National Dog</td><td>British Bulldog</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Famous Technology -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Famous Technology</div>
+<div class="aspect-detail"> Internet</div>
+</div>
+<table>
+<thead>
+<tr><th>Sector</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Internet</td><td>Significant contributions to the development of the web</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Medicine / Health -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Medicine / Health</div>
+<div class="aspect-detail">NHS, Herbal Medicine</div>
+</div>
+<table>
+<thead>
+<tr><th>Practice</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>NHS</td><td>National Health Service, providing healthcare to all</td></tr>
+<tr><td>Herbal Medicine</td><td>Traditional practices still in use</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Education -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Education</div>
+<div class="aspect-detail"> Cambridge</div>
+</div>
+<table>
+<thead>
+<tr><th>Institution</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Cambridge</td><td>Renowned for its academic excellence</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Dressing / Dance -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Dressing / Dance</div>
+<div class="aspect-detail">Tweed, Morris Dance</div>
+</div>
+<table>
+<thead>
+<tr><th>Category</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Traditional Attire</td><td>Tweed, often worn in rural areas</td></tr>
+<tr><td>Dance Form</td><td>Morris Dance, a traditional folk dance</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Agriculture -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Agriculture</div>
+<div class="aspect-detail">Wheat</div>
+</div>
+<table>
+<thead>
+<tr><th>Crop</th><th>Region / Notes</th></tr>
+</thead>
+<tbody>
+<tr><td>Wheat</td><td>Commonly grown in the East of England</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<!-- JAPAN -->
+<details>
+<summary style="font-size: 1.5rem;">
+        Japan
+        <img alt="Flag of Japan" class="flag-inline" src="https://flagcdn.com/w320/jp.png"/>
+</summary>
+<div class="aspect-list">
+<!-- Official Language -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Official Language</div>
+<div class="aspect-detail">Japanese</div>
+</div>
+<table>
+<thead>
+<tr><th>Language</th><th>Regions</th></tr>
+</thead>
+<tbody>
+<tr><td>Japanese</td><td>Nationwide</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Population -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Population</div>
+<div class="aspect-detail">126 Million</div>
+</div>
+<table>
+<thead>
+<tr><th>City</th><th>Population</th></tr>
+</thead>
+<tbody>
+<tr><td>Tokyo</td><td>Over 14 million</td></tr>
+<tr><td>Yokohama</td><td>Over 3.7 million</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Currency -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Currency</div>
+<div class="aspect-detail">Japanese Yen (¥)</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Denominations</th></tr>
+</thead>
+<tbody>
+<tr><td>Japanese Yen</td><td>¥1, ¥5, ¥10, ¥50, ¥100, ¥500, ¥1000, ¥5000, ¥10000</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Food, Fruits -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Food, Fruits</div>
+<div class="aspect-detail"> Ramen, Matcha, Cherry Blossom</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Examples</th></tr>
+</thead>
+<tbody>
+<tr><td>Dishes</td><td> Ramen</td></tr>
+<tr><td>Fruits</td><td>Cherry Blossom (symbolic), Persimmons</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Games -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Games</div>
+<div class="aspect-detail"> Sumo</div>
+</div>
+<table>
+<thead>
+<tr><th>Sport</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Sumo</td><td>Traditional Japanese wrestling</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Birds / Animals -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Birds / Animals</div>
+<div class="aspect-detail">Japanese Macaque, Koi Fish</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>National Bird</td><td>Japanese Macaque</td></tr>
+<tr><td>Symbolic Animal</td><td>Koi Fish</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Famous Technology -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Famous Technology</div>
+<div class="aspect-detail">Robotics</div>
+</div>
+<table>
+<thead>
+<tr><th>Sector</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Robotics</td><td>Leading in humanoid robots like ASIMO</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Medicine / Health -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Medicine / Health</div>
+<div class="aspect-detail">Traditional Medicine, Modern Healthcare</div>
+</div>
+<table>
+<thead>
+<tr><th>Practice</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Traditional Medicine</td><td>Incorporates herbal remedies and acupuncture</td></tr>
+<tr><td>Modern Healthcare</td><td>Advanced healthcare system with high life expectancy</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Education -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Education</div>
+<div class="aspect-detail">University of Tokyo</div>
+</div>
+<table>
+<thead>
+<tr><th>Institution</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>University of Tokyo</td><td>Top-ranked university in Japan</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Dressing / Dance -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Dressing / Dance</div>
+<div class="aspect-detail">Kimono, Kabuki</div>
+</div>
+<table>
+<thead>
+<tr><th>Category</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Traditional Attire</td><td>Kimono, worn during festivals and ceremonies</td></tr>
+<tr><td>Traditional Dance</td><td>Kabuki, a classical Japanese dance-drama</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Agriculture -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Agriculture</div>
+<div class="aspect-detail">Rice, Tea</div>
+</div>
+<table>
+<thead>
+<tr><th>Crop</th><th>Region / Notes</th></tr>
+</thead>
+<tbody>
+<tr><td>Rice</td><td>Staple food, primarily grown in paddy fields</td></tr>
+<tr><td>Tea</td><td>Famous for green tea, especially in Uji and Shizuoka</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<!-- GERMANY -->
+<details>
+<summary style="font-size: 1.5rem;">
+        Germany
+        <img alt="Flag of Germany" class="flag-inline" src="https://flagcdn.com/w320/de.png"/>
+</summary>
+<div class="aspect-list">
+<!-- Official Language -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Official Language</div>
+<div class="aspect-detail">German</div>
+</div>
+<table>
+<thead>
+<tr><th>Language</th><th>Regions/Cities</th></tr>
+</thead>
+<tbody>
+<tr><td>German</td><td>Nationwide</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Population -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Population</div>
+<div class="aspect-detail">83 Million</div>
+</div>
+<table>
+<thead>
+<tr><th>City</th><th>Population</th></tr>
+</thead>
+<tbody>
+<tr><td>Berlin</td><td>Over 3.5 million</td></tr>
+<tr><td>Hamburg</td><td>Over 1.8 million</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Currency -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Currency</div>
+<div class="aspect-detail">Euro (€)</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Denominations</th></tr>
+</thead>
+<tbody>
+<tr><td>Euro</td><td>€5, €10, €20, €50, €100, €200, €500</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Food, Fruits -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Food, Fruits</div>
+<div class="aspect-detail">Sauerbraten, Berries</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Examples</th></tr>
+</thead>
+<tbody>
+<tr><td>Dishes</td><td>Sauerbraten</td></tr>
+<tr><td>Fruits</td><td>Berries</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Games -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Games</div>
+<div class="aspect-detail"> Handball</div>
+</div>
+<table>
+<thead>
+<tr><th>Sport</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Handball</td><td>Widely played and followed</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Birds / Animals -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Birds / Animals</div>
+<div class="aspect-detail">Eagle, European Bison</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>National Bird</td><td>Golden Eagle</td></tr>
+<tr><td>National Animal</td><td>European Bison</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Famous Technology -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Famous Technology</div>
+<div class="aspect-detail">Automotive</div>
+</div>
+<table>
+<thead>
+<tr><th>Sector</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Automotive</td><td>Home to brands like BMW, Mercedes-Benz</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Medicine / Health -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Medicine / Health</div>
+<div class="aspect-detail">Universal Healthcare, Pharmaceuticals</div>
+</div>
+<table>
+<thead>
+<tr><th>Practice</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Universal Healthcare</td><td>Comprehensive healthcare system for all citizens</td></tr>
+<tr><td>Pharmaceuticals</td><td>Strong pharmaceutical industry with global reach</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Education -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Education</div>
+<div class="aspect-detail">Universities, Technical Schools</div>
+</div>
+<table>
+<thead>
+<tr><th>Institution</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Technical University of Munich</td><td>One of the top universities in Germany</td></tr>
+<tr><td>Heidelberg University</td><td>Oldest university in Germany, known for research</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Dressing / Dance -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Dressing / Dance</div>
+<div class="aspect-detail">Dirndl, Lederhosen</div>
+</div>
+<table>
+<thead>
+<tr><th>Category</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Traditional Attire</td><td>Dirndl for women, Lederhosen for men</td></tr>
+<tr><td>Folk Dance</td><td>Traditional Bavarian dances during festivals</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Agriculture -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Agriculture</div>
+<div class="aspect-detail">Barley</div>
+</div>
+<table>
+<thead>
+<tr><th>Crop</th><th>Region / Notes</th></tr>
+</thead>
+<tbody>
+<tr><td>Barley</td><td>Used for brewing beer, a major industry</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<!-- SWITZERLAND -->
+<details>
+<summary style="font-size: 1.5rem;">
+        Switzerland
+        <img alt="Flag of Switzerland" class="flag-inline" src="https://flagcdn.com/w320/ch.png"/>
+</summary>
+<div class="aspect-list">
+<!-- Official Language -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Official Languages</div>
+<div class="aspect-detail">German, French, Italian</div>
+</div>
+<table>
+<thead>
+<tr><th>Language</th><th>Regions</th></tr>
+</thead>
+<tbody>
+<tr><td>German</td><td>Central and Northern regions</td></tr>
+<tr><td>French</td><td>Western region (Romandy)</td></tr>
+<tr><td>Italian</td><td>Southern region (Ticino)</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Population -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Population</div>
+<div class="aspect-detail">8.6 Million</div>
+</div>
+<table>
+<thead>
+<tr><th>City</th><th>Population</th></tr>
+</thead>
+<tbody>
+<tr><td>Zurich</td><td>421,878</td></tr>
+<tr><td>Geneva</td><td>203,856</td></tr>
+<tr><td>Basel</td><td>178,120</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Currency -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Currency</div>
+<div class="aspect-detail">Swiss Franc (CHF)</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Denominations</th></tr>
+</thead>
+<tbody>
+<tr><td>Banknotes</td><td>CHF 10, CHF 20, CHF 50, CHF 100, CHF 200, CHF 1000</td></tr>
+<tr><td>Coins</td><td>5 Rappen, 10 Rappen, 20 Rappen, 1 Franc, 2 Francs, 5 Francs</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Food, Fruits -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Food, Fruits</div>
+<div class="aspect-detail">Fondue, Raclette, Chocolate</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Examples</th></tr>
+</thead>
+<tbody>
+<tr><td>Dishes</td><td>Fondue, Raclette</td></tr>
+<tr><td>Sweets</td><td>Swiss Chocolate</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Games -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Games</div>
+<div class="aspect-detail">Ice Hockey</div>
+</div>
+<table>
+<thead>
+<tr><th>Sport</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Ice Hockey</td><td>Highly popular, especially in winter</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Birds / Animals -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Birds / Animals</div>
+<div class="aspect-detail">Alpine Ibex, Golden Eagle</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>National Animal</td><td>Alpine Ibex</td></tr>
+<tr><td>National Bird</td><td>Golden Eagle</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Famous Technology -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Famous Technology</div>
+<div class="aspect-detail">Precision Engineering</div>
+</div>
+<table>
+<thead>
+<tr><th>Sector</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Precision Engineering</td><td>Known for high-quality watches and machinery</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Medicine / Health -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Medicine / Health</div>
+<div class="aspect-detail">Universal Healthcare</div>
+</div>
+<table>
+<thead>
+<tr><th>Aspect</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Healthcare System</td><td>High-quality universal healthcare system</td></tr>
+<tr><td>Preventive Care</td><td>Focus on preventive medicine and health education</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Education -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Education</div>
+<div class="aspect-detail"> University of Zurich</div>
+</div>
+<table>
+<thead>
+<tr><th>Institution</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>University of Zurich</td><td>Largest university in Switzerland</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Dressing / Dance -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Dressing / Dance</div>
+<div class="aspect-detail">Traditional Costumes, Yodeling</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>Traditional Attire</td><td>Trachten - traditional Swiss costumes</td></tr>
+<tr><td>Folk Dance</td><td>Yodeling - a form of singing that involves rapid changes of pitch</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Agriculture -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Agriculture</div>
+<div class="aspect-detail">Dairy, Grains</div>
+</div>
+<table>
+<thead>
+<tr><th>Crop</th><th>Region / Notes</th></tr>
+</thead>
+<tbody>
+<tr><td>Dairy</td><td>Major producer of cheese and milk products</td></tr>
+<tr><td>Grains</td><td>Wheat and barley are commonly grown</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<!-- RUSSIA -->
+<details>
+<summary style="font-size: 1.5rem;">
+        Russia
+        <img alt="Flag of Russia" class="flag-inline" src="https://flagcdn.com/w320/ru.png"/>
+</summary>
+<div class="aspect-list">
+<!-- Official Language -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Official Language</div>
+<div class="aspect-detail">Russian</div>
+</div>
+<table>
+<thead>
+<tr><th>Language</th><th>Regions</th></tr>
+</thead>
+<tbody>
+<tr><td>Russian</td><td>Nationwide</td></tr>
+<tr><td>Tatar</td><td>Republic of Tatarstan</td></tr>
+<tr><td>Chechen</td><td>Chechnya</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Population -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Population</div>
+<div class="aspect-detail">145 Million</div>
+</div>
+<table>
+<thead>
+<tr><th>City</th><th>Population</th></tr>
+</thead>
+<tbody>
+<tr><td>Moscow</td><td>Over 12 million</td></tr>
+<tr><td>Saint Petersburg</td><td>Over 5 million</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Currency -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Currency</div>
+<div class="aspect-detail">Russian Ruble (₽)</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Denominations</th></tr>
+</thead>
+<tbody>
+<tr><td>Banknotes</td><td>₽5, ₽10, ₽50, ₽100, ₽500, ₽1000, ₽5000</td></tr>
+<tr><td>Coins</td><td>₽1, ₽2, ₽5, ₽10</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Food, Fruits -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Food, Fruits</div>
+<div class="aspect-detail">Borscht,Currants</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Examples</th></tr>
+</thead>
+<tbody>
+<tr><td>Dishes</td><td>Borscht</td></tr>
+<tr><td>Fruits</td><td>Currants</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Games -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Games</div>
+<div class="aspect-detail">Chess</div>
+</div>
+<table>
+<thead>
+<tr><th>Sport</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Chess</td><td>Globally recognized grandmasters</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Birds / Animals -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Birds / Animals</div>
+<div class="aspect-detail">Siberian Tiger, Russian Desman</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>National Animal</td><td>Siberian Tiger</td></tr>
+<tr><td>Unique Mammal</td><td>Russian Desman</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Famous Technology -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Famous Technology</div>
+<div class="aspect-detail">Space, Nuclear</div>
+</div>
+<table>
+<thead>
+<tr><th>Sector</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Space</td><td>Roscosmos and legacy of Soviet space program</td></tr>
+<tr><td>Nuclear</td><td>Advanced reactors and research</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Medicine / Health -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Medicine / Health</div>
+<div class="aspect-detail">Public Healthcare, Research Institutes</div>
+</div>
+<table>
+<thead>
+<tr><th>Practice</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Public Healthcare</td><td>Universal system with large hospitals</td></tr>
+<tr><td>Research</td><td>Specialized medical and pharma institutes</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Education -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Education</div>
+<div class="aspect-detail">MSU, SPbU</div>
+</div>
+<table>
+<thead>
+<tr><th>Institution</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Moscow State University</td><td>Premier Russian university</td></tr>
+<tr><td>St. Petersburg State University</td><td>Historic and prestigious institution</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Dressing / Dance -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Dressing / Dance</div>
+<div class="aspect-detail">Sarafan, Ballet</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>Traditional Attire</td><td>Sarafan, Kokoshnik</td></tr>
+<tr><td>Dance</td><td>World-renowned ballet</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Agriculture -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Agriculture</div>
+<div class="aspect-detail">Wheat</div>
+</div>
+<table>
+<thead>
+<tr><th>Crop</th><th>Region</th></tr>
+</thead>
+<tbody>
+<tr><td>Wheat</td><td>Southern and Central Russia</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<!-- SINGAPORE -->
+<details>
+<summary style="font-size: 1.5rem;">
+        Singapore
+        <img alt="Flag of Singapore" class="flag-inline" src="https://flagcdn.com/w320/sg.png"/>
+</summary>
+<div class="aspect-list">
+<!-- Official Language -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Official Language</div>
+<div class="aspect-detail">English,Mandarin,Malay</div>
+</div>
+<table>
+<thead>
+<tr><th>Language</th><th>Usage</th></tr>
+</thead>
+<tbody>
+<tr><td>English</td><td>National business and administration language</td></tr>
+<tr><td>Mandarin</td><td>Spoken by the majority Chinese community</td></tr>
+<tr><td>Malay</td><td>Official ethnic language</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Population -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Population</div>
+<div class="aspect-detail">5.6 Million</div>
+</div>
+<table>
+<thead>
+<tr><th>Region</th><th>Percentage (%)</th></tr>
+</thead>
+<tbody>
+<tr><td>Central Region</td><td>40</td></tr>
+<tr><td>East Region</td><td>20</td></tr>
+<tr><td>West Region</td><td>15</td></tr>
+<tr><td>North-East Region</td><td>15</td></tr>
+<tr><td>North Region</td><td>10</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Currency -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Currency</div>
+<div class="aspect-detail">Singapore Dollar (SGD)</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Denominations</th></tr>
+</thead>
+<tbody>
+<tr><td>Banknotes</td><td>$2, $5, $10, $50, $100, $1000</td></tr>
+<tr><td>Coins</td><td>1¢ to 50¢</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Food, Fruits -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Food, Fruits</div>
+<div class="aspect-detail">Chili Crab, Mangosteen</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Examples</th></tr>
+</thead>
+<tbody>
+<tr><td>Dishes</td><td>Chili Crab</td></tr>
+<tr><td>Fruits</td><td>Mangosteen</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Games -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Games</div>
+<div class="aspect-detail">Badminton</div>
+</div>
+<table>
+<thead>
+<tr><th>Sport</th><th>Popularity</th></tr>
+</thead>
+<tbody>
+<tr><td>Badminton</td><td>Widely played nationwide</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Birds / Animals -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Birds / Animals</div>
+<div class="aspect-detail">Pink-necked Green Pigeon, Smooth-coated Otter</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Bird</td><td>Pink-necked Green Pigeon</td></tr>
+<tr><td>Animal</td><td>Smooth-coated Otter</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Famous Technology -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Famous Technology</div>
+<div class="aspect-detail">Smart Nation Initiative, Advanced Urban Planning</div>
+</div>
+<table>
+<thead>
+<tr><th>Sector</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Smart City Tech</td><td>IoT, real-time sensors, public CCTV</td></tr>
+<tr><td>Urban Planning</td><td>Efficient transit, greenery, zoning</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Medicine / Health -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Medicine / Health</div>
+<div class="aspect-detail">National Healthcare System, Preventive Focus</div>
+</div>
+<table>
+<thead>
+<tr><th>Aspect</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Healthcare</td><td>Subsidized, high-quality care</td></tr>
+<tr><td>Preventive</td><td>Campaigns for healthy lifestyle and checkups</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Education -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Education</div>
+<div class="aspect-detail">NUS, NTU, Polytechnics</div>
+</div>
+<table>
+<thead>
+<tr><th>Institution</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>National University of Singapore (NUS)</td><td>Top Asian university</td></tr>
+<tr><td>Nanyang Technological University (NTU)</td><td>Renowned for engineering</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Dressing / Dance -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Dressing / Dance</div>
+<div class="aspect-detail">Multicultural attire, traditional dances</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>Traditional Attire</td><td>Saree, Baju Kurung, Cheongsam</td></tr>
+<tr><td>Dances</td><td>Dragon Dance, Zapin, Bharatnatyam</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Agriculture -->
+<div class="aspect-card">
+<div class="aspect-text">
+<div class="aspect-name">Agriculture</div>
+<div class="aspect-detail">Urban Farming, Hydroponics</div>
+</div>
+<table>
+<thead>
+<tr><th>Type</th><th>Notes</th></tr>
+</thead>
+<tbody>
+<tr><td>Urban Farms</td><td>Rooftop and vertical farms</td></tr>
+<tr><td>Crops</td><td>Limited land; focus on greens and herbs</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+</section>
+
+
+<section id="population-chart" style="display: none; animation: fadeIn 0.4s ease-in-out;" tabindex="0">
+<h2 style="text-align: center; color: #003366; font-size: 2rem; margin-bottom: 2rem;">Population Comparison</h2>
+<div style="max-width: 1000px; margin: 0 auto; padding: 2rem; background: #ffffff; border-radius: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+<canvas height="400" id="populationBarChart"></canvas>
+</div>
+</section>
+
+<!-- Dailing Code Button -->
+
+<section id="dialing-code" style="display: none; animation: fadeIn 0.4s ease-in-out;" tabindex="0">
+  <h2 style="text-align: center; color: #003366; font-size: 2rem; margin-bottom: 2rem;">Dialing Codes</h2>
+  <div style="max-width: 1050px; margin: 0 auto; padding: 3rem 1.5rem; font-family: 'Poppins', sans-serif;">
+  <details>
+  <summary style="font-size: 1.3rem;">
+          Which code is +91?
+        </summary>
+  <div class="aspect-list">
+  <div class="aspect-card">
+  <div class="aspect-text">
+  <div class="aspect-name" style="font-size: 1.2rem;">Country</div>
+  <div class="aspect-detail" style="font-size: 1.1rem;">India</div>
+  </div>
+  </div>
+  </div>
+  </details>
+  <details>
+  <summary style="font-size: 1.3rem;">
+          Which code is +7?
+        </summary>
+  <div class="aspect-list">
+  <div class="aspect-card">
+  <div class="aspect-text">
+  <div class="aspect-name" style="font-size: 1.2rem;">Country</div>
+  <div class="aspect-detail" style="font-size: 1.1rem;">Russia</div>
+  </div>
+  </div>
+  </div>
+  </details>
+  <details>
+  <summary style="font-size: 1.3rem;">
+          Which code is +65?
+        </summary>
+  <div class="aspect-list">
+  <div class="aspect-card">
+  <div class="aspect-text">
+  <div class="aspect-name" style="font-size: 1.2rem;">Country</div>
+  <div class="aspect-detail" style="font-size: 1.1rem;">Singapore</div>
+  </div>
+  </div>
+  </div>
+  </details>
+  <details>
+  <summary style="font-size: 1.3rem;">
+          Which code is +81?
+        </summary>
+  <div class="aspect-list">
+  <div class="aspect-card">
+  <div class="aspect-text">
+  <div class="aspect-name" style="font-size: 1.2rem;">Country</div>
+  <div class="aspect-detail" style="font-size: 1.1rem;">Japan</div>
+  </div>
+  </div>
+  </div>
+  </details>
+  <details>
+  <summary style="font-size: 1.3rem;">
+          Which code is +86?
+        </summary>
+  <div class="aspect-list">
+  <div class="aspect-card">
+  <div class="aspect-text">
+  <div class="aspect-name" style="font-size: 1.2rem;">Country</div>
+  <div class="aspect-detail" style="font-size: 1.1rem;">China</div>
+  </div>
+  </div>
+  </div>
+  </details>
+  <details>
+  <summary style="font-size: 1.3rem;">
+          Which code is +1?
+        </summary>
+  <div class="aspect-list">
+  <div class="aspect-card">
+  <div class="aspect-text">
+  <div class="aspect-name" style="font-size: 1.2rem;">Country</div>
+  <div class="aspect-detail" style="font-size: 1.1rem;">USA</div>
+  </div>
+  </div>
+  </div>
+  </details>
+  <details>
+  <summary style="font-size: 1.3rem;">
+          Which code is +44?
+        </summary>
+  <div class="aspect-list">
+  <div class="aspect-card">
+  <div class="aspect-text">
+  <div class="aspect-name" style="font-size: 1.2rem;">Country</div>
+  <div class="aspect-detail" style="font-size: 1.1rem;">UK</div>
+  </div>
+  </div>
+  </div>
+  </details>
+  <details>
+  <summary style="font-size: 1.3rem;">
+          Which code is +33?
+        </summary>
+  <div class="aspect-list">
+  <div class="aspect-card">
+  <div class="aspect-text">
+  <div class="aspect-name" style="font-size: 1.2rem;">Country</div>
+  <div class="aspect-detail" style="font-size: 1.1rem;">France</div>
+  </div>
+  </div>
+  </div>
+  </details>
+  <details>
+  <summary style="font-size: 1.3rem;">
+          Which code is +49?
+        </summary>
+  <div class="aspect-list">
+  <div class="aspect-card">
+  <div class="aspect-text">
+  <div class="aspect-name" style="font-size: 1.2rem;">Country</div>
+  <div class="aspect-detail" style="font-size: 1.1rem;">Germany</div>
+  </div>
+  </div>
+  </div>
+  </details>
+  <details>
+  <summary style="font-size: 1.3rem;">
+          Which code is +41?
+        </summary>
+  <div class="aspect-list">
+  <div class="aspect-card">
+  <div class="aspect-text">
+  <div class="aspect-name" style="font-size: 1.2rem;">Country</div>
+  <div class="aspect-detail" style="font-size: 1.1rem;">Switzerland</div>
+  </div>
+  </div>
+  </div>
+  </details>
+  </div>
+  </section>
+  </main>
+
+  <!-- Js -->
+
+  <script>
+
+    /* This function hides all sections and shows the one the user clicked on */
+
+      function switchSection(id) {
+        document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+      }
+      function switchSection(id) {
+      const sections = document.querySelectorAll("main > section");
+      sections.forEach(section => {
+        section.style.display = "none";
+        section.classList.remove("active");
+      });
+  
+      const target = document.getElementById(id);
+      if (target) {
+        target.style.display = "block";
+        target.classList.add("active");
+      }
+    }
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      switchSection("home");
+    });
+    </script>
+
+    <!-- For Bar Chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <script>
+    // Function to switch between sections
+    function switchSection(id) {
+      document.querySelectorAll("main > section").forEach(sec => sec.style.display = "none");
+      const activeSection = document.getElementById(id);
+      if (activeSection) {
+        activeSection.style.display = "block";
+        if (id === "population-chart") renderPopulationChart();
+      }
+    }
+  
+    // Function to render the population chart
+    function renderPopulationChart() {
+      const ctx = document.getElementById("populationBarChart").getContext("2d");
+      
+      // Destroy previous chart instance if it exists
+      if (window.barChart) {
+        window.barChart.destroy();
+      }
+  
+      // Create a new chart
+      window.barChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['India', 'Russia', 'Singapore', 'Japan', 'China', 'USA', 'UK', 'France', 'Germany', 'Switzerland'],
+          datasets: [{
+            label: "Population (in Millions)",
+            data: [1460.0, 145.0, 5.6, 126.0, 1400.0, 331.0, 67.0, 67.0, 83.0, 8.6],
+            backgroundColor: [
+              '#e71111', '#18c443', '#ff69b4', '#5917af', '#032c0a',
+              '#e7e41b', '#eeb20c', '#162ae4', '#111111', '#196ce9'
+            ],
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: 'Population of Selected Countries',
+              color: '#003366',
+              font: { size: 18 }
+            },
+            tooltip: {
+              callbacks: {
+                label: ctx => `${ctx.raw} million`
+              }
+            },
+            datalabels: {
+              anchor: 'end',
+              align: 'end',
+              color: '#003366',
+              font: { weight: 'bold' },
+              formatter: (value) => `${value}`
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Population (Millions)',
+                color: '#003366',
+                font: { size: 14 }
+              }
+            },
+            x: {
+              ticks: {
+                color: '#003366',
+                font: { weight: 'bold' }
+              }
+            }
+          }
+        },
+        plugins: [ChartDataLabels]
+      });
+    }
+  
+    // Initialize the first section to be displayed
+    document.addEventListener("DOMContentLoaded", () => {
+      switchSection("home");
+    });
+  </script>
+
+  </body>
+  </html>
+  
